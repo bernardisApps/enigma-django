@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div style="display: flex; justify-content: center;align-items: center;text-align: center;">
+    <form style="width: 70%;" class="card mt-5 p-2" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{form.as_p}}
+            <input type="submit" id="ver" value="Ingresar">
+            <p>Si no está registrado <a href="">Click aquí</a></p>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}
