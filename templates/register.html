@@ -13,6 +13,13 @@
             {{form.as_p}}
             <input type="submit" id="ver" value="Registrar">
         </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </form>
 
 </div>

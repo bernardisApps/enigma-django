@@ -57,6 +57,9 @@ def register_view(request):
                 user = form.save()
                 Carrito.objects.create(usuario=user)
                 return redirect('login')
+            else:
+                messages.info(request,'Error al registrar el usuario intente nuevamente')
+                return redirect('register')
         else:
             form = RegistrationForm()
             context = {
