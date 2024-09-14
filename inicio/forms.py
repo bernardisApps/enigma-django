@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegistrationForm(UserCreationForm):
 
-    username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
+    username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}),label='Nombre de usuario')
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
     password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class':'form-control'}),
@@ -15,7 +15,6 @@ class RegistrationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class':'form-control'}),
         label='Vuelva a escribir la contraseña'
         )
-    is_staff = forms.BooleanField(required=None)
 
     class Meta:
         model = User
