@@ -3,6 +3,8 @@ from productos.models import Producto
 from .forms import loginForm, RegistrationForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib import messages
+from carrito.models import Carrito
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -52,7 +54,8 @@ def register_view(request):
         if request.method == 'POST':
             form = RegistrationForm(request.POST)
             if form.is_valid():
-                form.save()
+                user = form.save()
+                Carrito.objects.create(usuario=user)
                 return redirect('login')
         else:
             form = RegistrationForm()
