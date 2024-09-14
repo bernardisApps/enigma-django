@@ -1,0 +1,20 @@
+/* Navbar */
+
+.navegador{
+    background-image: linear-gradient(to left, #250307 0%, #8B0A1A 45%);
+}
+
+.navegador .logo {
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.navegador .logo img{
+    height: 80px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+.navegador .logo img:hover {
+    transform: scale(1.2);
+}

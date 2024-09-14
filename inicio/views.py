@@ -56,4 +56,8 @@ def register_view(request):
                 return redirect('login')
         else:
             form = RegistrationForm()
-        return render(request, 'register.html', {'form':form})
+            context = {
+                'title':'Registro',
+                'form':form
+            }
+        return render(request, 'register.html', context=context)

@@ -37,10 +37,10 @@
 
         <!-- Fin de Carousel -->
 
-        <div class="productos">
-            <p
-                style="color: #815470; font-size: 20px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                LOS MÁS VALORADOS <img style="margin-bottom: 5px;" src="{% static '/IMAGES/valoraciones.png' %}">
+        <div class="valorados">
+            <p>
+                LOS MÁS VALORADOS
+                <img style="margin-bottom: 5px;" src="{% static '/IMAGES/valoraciones.png' %}">
             </p>
             <div class="catalogo">
                 <img src="{% static '/IMAGES/Ellipse.png' %}">
@@ -54,10 +54,10 @@
         </div>
         {% for producto in productos %}
         <div style="margin-top: 20px;" class="col-md-6">
-            <div style="display: flex;" class="card">
-                <h1 style="color: #815470;"> {{producto.nombre}} </h1>
-                <img style="width: 40%; margin-top: 20px;" src="{{producto.imagen}}" alt="Producto">
-                <h3 style="color: #815470;"> {{producto.categoria.nombre}} </h3>
+            <div class="card shadow product">
+                <h1> {{producto.nombre}} </h1>
+                <img style="width: max-content; margin-top: 20px;" src="{{producto.imagen}}" alt="Producto">
+                <h3> {{producto.categoria.nombre}} </h3>
                 <p> {{producto.precio}} </p>
                 <a class="ver-producto" id="ver" href="#">Ver Producto</a>
             </div>
