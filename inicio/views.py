@@ -4,7 +4,6 @@ from .forms import loginForm, RegistrationForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib import messages
 from carrito.models import Carrito
-from django.contrib.auth.models import User
 
 
 # Create your views here.

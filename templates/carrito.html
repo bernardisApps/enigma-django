@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="carrito">
+
+    <div class="row p-2">
+        <div class="col">
+            <div style="text-align: center;" class="portada">
+                <h1 style="background-color: #f7d2c4; color: #815470; box-shadow: rgb(212, 212, 212) 2px 2px 2px;">Tu
+                    carrito</h1>
+            </div>
+
+        </div>
+    </div>
+<!--Acá van los productos que esten en la DB-->
+    <div class="row p-2">
+        {% for item in items %}
+        <div class="col-md-6 mt-2">
+            <div class="producto1 card" style="padding-top: 10px;
+                 padding-bottom: 10px;" >
+                <div>
+                    <img style="float: left; margin-right: 20px; width: auto;"
+                        src=" {{BASE_URL}}/{{item.producto.imagen}}" alt="imagen">
+                    <h3 style="color: #7E0817;"> {{item.producto.nombre}} </h3>
+                    <p> Precio: ${{item.producto.precio}} </p>
+                    <p> Cantidad: {{item.cantidad}} </p>
+                </div>
+                <div style="text-align: center;">
+                    <a href="" class="botones">Restar 1</a>
+                    <a href="" class="botones">Sumar 1</a>
+                    <a href="" class="botones">Eliminar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<!--aca terminan los productos-->
+    <div class="row p-2">
+        <div class="col">
+
+            <div style="text-align: center;" class="monto">
+                <br>
+                <h2>Total: ${{total}} </h2>
+                <br>
+                <a class="botones" href="#">Terminar la compra</a>
+                <a class="botones" href="{% url 'inicio' %}">Seguir comprando</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

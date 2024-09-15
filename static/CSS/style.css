@@ -126,6 +126,22 @@
     transition: background-color 0.5s ease;
 }
 
+.botones {
+    margin-bottom: 20px;
+    background-color: #815470;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    transition: background-color 0.5s ease;
+}
+
+.botones:hover {
+    background-color: #614054;
+}
+
 #ver:hover {
     background-color: #614054;
 }
