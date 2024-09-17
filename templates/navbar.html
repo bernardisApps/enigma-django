@@ -13,7 +13,11 @@
           <a class="nav-link" href="#">Mi perfil 👤</a>
         </li>
         <li class="nav-item"></li>
-          <a class="nav-link" href="{% url 'carrito' %}">Carrito 🛒</a>
+          <a class="nav-link" href="{% url 'carrito' %}">Carrito 🛒 
+            {% if carrito_cantidad > 0 %}
+              ({{carrito_cantidad}}) 
+            {% endif %}
+          </a>
         </li>
         <li class="nav-item"></li>
           <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión 💨</a>

@@ -18,7 +18,7 @@ def carrito_view(request):
         return redirect('inicio')
     
 def restar_cantidad(request):
-    pass
+    print(request.items)
 
 def sumar_cantidad(request):
     pass

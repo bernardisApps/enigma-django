@@ -16,9 +16,16 @@ def inicio(request):
 
     if request.method == 'GET':
         productos = Producto.objects.order_by('-id')[:10]
+        carrito_cantidad = 0
+
+        if request.user.username:
+            carrito = Carrito.objects.get(usuario=request.user)
+            carrito_cantidad = carrito.items.count()
+        
         context = {
         'title' : 'Inicio',
-        'productos' : productos
+        'productos' : productos,
+        'carrito_cantidad':carrito_cantidad
         }
         return render(request,'inicio.html', context=context)
     
