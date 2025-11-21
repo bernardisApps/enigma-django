@@ -1,27 +1,25 @@
 from django.shortcuts import render, redirect
-from .models import Carrito
+from .models import Carrito_item
+from django.db.models import Sum, F
 
 # Create your views here.
 
 def carrito_view(request):
     if request.user.is_authenticated:
-        carrito = Carrito.objects.get(usuario=request.user)
-        items = carrito.items.all()
-        total = carrito.get_total()
+        carrito = Carrito_item.objects.filter(usuario=request.user)
+        #items = carrito.all()
+        total = carrito.aggregate(total=Sum(F('producto__precio') * F('cantidad')))['total'] or 0
         context = {
             'title':'Carrito',
-            'items':items,
+            'carrito':carrito,
             'total':total,
         }
         return render(request,'carrito.html', context)
     else:
         return redirect('inicio')
     
-def restar_cantidad(request):
-    print(request.items)
-
-def sumar_cantidad(request):
-    pass
-
-def eliminar_todo(request):
-    pass
+def editar_item(request, id):
+    if request.method == 'POST':
+        if int(request.POST['cantidad']) > 0:
+            Carrito_item.objects.filter(id=id).update(cantidad=request.POST['cantidad'])
+        return redirect('carrito')

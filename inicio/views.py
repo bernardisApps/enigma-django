@@ -3,7 +3,7 @@ from productos.models import Producto
 from .forms import loginForm, RegistrationForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib import messages
-from carrito.models import Carrito
+from carrito.models import Carrito_item
 
 
 # Create your views here.
@@ -19,8 +19,8 @@ def inicio(request):
         carrito_cantidad = 0
 
         if request.user.username:
-            carrito = Carrito.objects.get(usuario=request.user)
-            carrito_cantidad = carrito.items.count()
+            carrito = Carrito_item.objects.filter(usuario=request.user)
+            carrito_cantidad = carrito.count()
         
         context = {
         'title' : 'Inicio',

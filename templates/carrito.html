@@ -19,6 +19,7 @@
     </div>
 <!--Acá van los productos que esten en la DB-->
     <div class="row p-2">
+    <!--
         {% for item in items %}
         <div class="col-md-6 mt-2">
             <div class="producto1 card" style="padding-top: 10px;
@@ -28,16 +29,42 @@
                         src=" {{BASE_URL}}/{{item.producto.imagen}}" alt="imagen">
                     <h3 style="color: #7E0817;"> {{item.producto.nombre}} </h3>
                     <p> Precio: ${{item.producto.precio}} </p>
-                    <p> Cantidad: {{item.cantidad}} </p>
+                    {{item.producto.cantidad}}
+                    
                 </div>
                 <div style="text-align: center;">
-                    <a href="" class="botones">Restar 1</a>
-                    <a href="" class="botones">Sumar 1</a>
-                    <a href="" class="botones">Eliminar</a>
+                	<form action="{{ BASE_URL  }}/carrito/editar " method='POST'>
+                		{% csrf_token  %}
+                		<label for='cantidad'>Cantidad: </label>
+	                	<input name='cantidad' value={{ item.producto.cantidad }}  type='number'></input>
+	                	<button class='btn btn-success'  type="submit">Editar</button>    
+                	</form>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        {% endfor %}-->
+        {% for item in carrito  %}
+			<div class="col-md-6 mt-2">
+			            <div class="producto1 card" style="padding-top: 10px;
+			                 padding-bottom: 10px;" >
+			                <div>
+			                    <img style="float: left; margin-right: 20px; width: auto;"
+			                        src=" {{BASE_URL}}/{{item.producto.imagen}}" alt="imagen">
+			                    <h3 style="color: #7E0817;"> {{item.producto.nombre}} </h3>
+			                    <p> Precio: ${{item.producto.precio}} </p>
+			                    
+			                </div>
+			                <div style="text-align: center;">
+			                	<form action="{{ BASE_URL  }}/carrito/editar/{{item.id}} " method='POST'>
+			                		{% csrf_token  %}
+			                		<label for='cantidad'>Cantidad: </label>
+				                	<input name='cantidad' value={{ item.cantidad }}  type='number'></input>
+				                	<button class='btn btn-success'  type="submit">Editar</button>    
+			                	</form>
+			                </div>
+			            </div>
+			        </div>
+        {% endfor  %}
     </div>
 <!--aca terminan los productos-->
     <div class="row p-2">
