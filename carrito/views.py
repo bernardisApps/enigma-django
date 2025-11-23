@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Carrito_item
 from django.db.models import Sum, F
+from django.contrib import messages
 
 # Create your views here.
 
@@ -22,4 +23,8 @@ def editar_item(request, id):
     if request.method == 'POST':
         if int(request.POST['cantidad']) > 0:
             Carrito_item.objects.filter(id=id).update(cantidad=request.POST['cantidad'])
+            messages.success(request, "Se ha editado el producto con éxito.")
+        else:
+            Carrito_item.objects.filter(id=id).delete()
+            messages.success(request, "Se ha eliminado el producto con éxito.")
         return redirect('carrito')
