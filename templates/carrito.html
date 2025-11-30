@@ -17,7 +17,9 @@
 
         </div>
     </div>
-<!--Acá van los productos que esten en la DB-->
+
+	<!-- Aca van los mensajes del sistema  -->
+	
     <div class="row p-2">
     	{% if messages  %}
 			<ul>
@@ -29,30 +31,9 @@
 			</ul>
 
     	{% endif  %}
-    <!--
-        {% for item in items %}
-        <div class="col-md-6 mt-2">
-            <div class="producto1 card" style="padding-top: 10px;
-                 padding-bottom: 10px;" >
-                <div>
-                    <img style="float: left; margin-right: 20px; width: auto;"
-                        src=" {{BASE_URL}}/{{item.producto.imagen}}" alt="imagen">
-                    <h3 style="color: #7E0817;"> {{item.producto.nombre}} </h3>
-                    <p> Precio: ${{item.producto.precio}} </p>
-                    {{item.producto.cantidad}}
-                    
-                </div>
-                <div style="text-align: center;">
-                	<form action="{{ BASE_URL  }}/carrito/editar " method='POST'>
-                		{% csrf_token  %}
-                		<label for='cantidad'>Cantidad: </label>
-	                	<input name='cantidad' value={{ item.producto.cantidad }}  type='number'></input>
-	                	<button class='btn btn-success'  type="submit">Editar</button>    
-                	</form>
-                </div>
-            </div>
-        </div>
-        {% endfor %}-->
+
+    	<!--Acá van los productos que esten en la DB-->
+    
         {% for item in carrito  %}
 			<div class="col-md-6 mt-2">
 			            <div class="producto1 card" style="padding-top: 10px;
@@ -68,9 +49,13 @@
 			                	<form action="{{ BASE_URL  }}/carrito/editar/{{item.id}} " method='POST'>
 			                		{% csrf_token  %}
 			                		<label for='cantidad'>Cantidad: </label>
-				                	<input name='cantidad' value={{ item.cantidad }}  type='number'></input>
-				                	<button class='btn btn-success'  type="submit">Editar</button>    
+				                	<input style="width: 30%; margin: 10px auto; text-align: center; "  class="form-control"  name='cantidad' value={{ item.cantidad }}  type='number'></input>
+				                	<button class='botones'  type="submit">Editar</button>
 			                	</form>
+			                	<button class='botones'  onclick="window.location.href='{% url 'eliminar' item.id %}'">
+			                	    Eliminar
+			                	</button>
+			                	
 			                </div>
 			            </div>
 			        </div>
